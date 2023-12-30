@@ -32,7 +32,9 @@ export default function RootLayout({
           </ul>
         </header>
         <Sidebar />
-        <main className="pt-[56px] pl-64">{children}</main>
+        <main className="pt-[56px] pl-64">
+          <div className="p-4">{children}</div>
+        </main>
       </body>
     </html>
   );
