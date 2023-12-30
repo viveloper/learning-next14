@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
+import useSWR from 'swr';
+import axios from 'axios';
+import { Sidebar } from '@/components/Sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="p-4 bg-slate-700 text-white">
+        <header className="fixed w-full p-4 bg-slate-700 text-white">
           <ul className="flex gap-2">
             <li>
               <Link href="/">Home</Link>
@@ -28,7 +31,8 @@ export default function RootLayout({
             </li>
           </ul>
         </header>
-        {children}
+        <Sidebar />
+        <main className="pt-[56px] pl-64">{children}</main>
       </body>
     </html>
   );
