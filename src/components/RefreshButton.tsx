@@ -1,6 +1,6 @@
 'use client';
 
-import refresh from '../actions';
+import refresh from '../app/actions';
 
 export function RefreshButton() {
   return (
