@@ -1,19 +1,16 @@
 import { useUserInfo } from '../hooks/useUserInfo';
 
 export function UserInfo() {
-  const { data, mutate } = useUserInfo();
+  const { data } = useUserInfo();
   return (
     <div className="border p-4">
       <div className="flex justify-between">
         <div className="text-2xl">User Information</div>
-        <button
-          className="border border-black rounded p-1"
-          onClick={() => mutate()}
-        >
-          Refresh
-        </button>
       </div>
-      <div className="mt-4">{data?.data.name}</div>
+      <div className="flex items-center mt-4">
+        <label>Name :</label>
+        <div className="ml-2">{data?.data.name}</div>
+      </div>
     </div>
   );
 }

@@ -29,6 +29,9 @@ export default function RootLayout({
             <li>
               <Link href="/about">About</Link>
             </li>
+            <li>
+              <Link href="/client-side-data-fetching">Articles</Link>
+            </li>
           </ul>
         </header>
         <Sidebar />

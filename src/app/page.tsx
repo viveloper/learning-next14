@@ -22,8 +22,7 @@ function getData() {
       }
 
       const data: Todo[] = await res.json();
-      const randomUser = Math.floor(Math.random() * 10);
-      resolve(data.filter((item) => item.userId === randomUser));
+      resolve(data.filter((item) => item.userId === 1));
     }, 1000);
   });
 }

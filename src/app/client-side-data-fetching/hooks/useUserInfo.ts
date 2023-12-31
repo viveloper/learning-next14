@@ -3,8 +3,8 @@ import axios from 'axios';
 import useSWR from 'swr';
 
 export function useUserInfo() {
-  const result = useSWR('/api/user?delay=1000', (url) =>
-    axios.get<UserType>(url)
-  );
+  const result = useSWR('/api/user', (url) => axios.get<UserType>(url), {
+    revalidateOnFocus: false,
+  });
   return result;
 }
