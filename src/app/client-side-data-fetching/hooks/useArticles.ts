@@ -4,7 +4,7 @@ import { ArticleType } from '../api/article/route';
 
 export function useArticles() {
   const result = useSWR(
-    '/client-side-data-fetching/api/article?delay=1500',
+    '/client-side-data-fetching/api/articles?delay=1500',
     (url) => axios.get<ArticleType[]>(url)
   );
 

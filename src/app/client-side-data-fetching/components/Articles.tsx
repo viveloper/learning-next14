@@ -2,6 +2,7 @@ import { useArticles } from '../hooks/useArticles';
 
 export function Articles() {
   const { data, mutate } = useArticles();
+
   return (
     <div className="border p-4 mt-4">
       <div className="flex justify-between">
