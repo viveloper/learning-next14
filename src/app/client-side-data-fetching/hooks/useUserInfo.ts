@@ -5,6 +5,7 @@ import useSWR from 'swr';
 export function useUserInfo() {
   const result = useSWR('/api/user', (url) => axios.get<UserType>(url), {
     revalidateOnFocus: false,
+    shouldRetryOnError: false,
   });
   return result;
 }

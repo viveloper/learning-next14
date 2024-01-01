@@ -6,7 +6,7 @@ export function useArticles() {
   const result = useSWR(
     '/client-side-data-fetching/api/article',
     (url) => axios.get<ArticleType[]>(url),
-    { revalidateOnFocus: false }
+    { revalidateOnFocus: false, shouldRetryOnError: false }
   );
 
   return result;

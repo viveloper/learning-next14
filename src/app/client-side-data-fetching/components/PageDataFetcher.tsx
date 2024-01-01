@@ -2,17 +2,15 @@ import { useUserInfo } from '../hooks/useUserInfo';
 import { useArticles } from '../hooks/useArticles';
 
 export function PageDataFetcher({ children }: { children?: React.ReactNode }) {
-  const { isLoading: isUserInfoLoading, error: isUserInfoError } =
-    useUserInfo();
-  const { isLoading: isArticlesLoading, error: isArticlesError } =
-    useArticles();
+  const { isLoading: isUserInfoLoading, error: userInfoError } = useUserInfo();
+  const { isLoading: isArticlesLoading, error: articlesError } = useArticles();
 
-  if (isUserInfoError) {
-    throw isUserInfoError;
+  if (userInfoError) {
+    throw userInfoError;
   }
 
-  if (isArticlesError) {
-    throw isArticlesError;
+  if (articlesError) {
+    throw articlesError;
   }
 
   if (isUserInfoLoading || isArticlesLoading) {

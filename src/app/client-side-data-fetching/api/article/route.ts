@@ -38,6 +38,39 @@ export async function GET(request: NextRequest) {
   if (!isNaN(delay)) {
     await sleep(delay);
   }
+  const errorType = searchParams.get('errorType');
+
+  if (errorType === '40001') {
+    return new Response(
+      JSON.stringify({
+        errorCode: 40001,
+        errorMessage: 'Bad Request. [40001]',
+      }),
+      {
+        status: 400,
+        statusText: 'Bad Request.',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+  if (errorType === '50001') {
+    return new Response(
+      JSON.stringify({
+        errorCode: 50001,
+        errorMessage: 'Inernal Server Error. [50001]',
+      }),
+      {
+        status: 500,
+        statusText: 'Internal Server Error.',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+
   return Response.json(ARTICLES);
 }
 

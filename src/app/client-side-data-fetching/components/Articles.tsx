@@ -3,6 +3,10 @@ import { useArticles } from '../hooks/useArticles';
 export function Articles() {
   const { data } = useArticles();
 
+  // error occured
+  // const temp = { a: 1 };
+  // temp.b.c = 1;
+
   return (
     <div className="border p-4 mt-4">
       <div className="flex justify-between">
