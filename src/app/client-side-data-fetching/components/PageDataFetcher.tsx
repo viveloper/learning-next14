@@ -14,7 +14,7 @@ export function PageDataFetcher({ children }: { children?: React.ReactNode }) {
   }
 
   if (isUserInfoLoading || isArticlesLoading) {
-    return <div>Articles Page Loading...</div>;
+    return <div>Page Loading...</div>;
   }
 
   return children;
