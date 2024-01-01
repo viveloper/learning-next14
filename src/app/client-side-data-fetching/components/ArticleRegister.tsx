@@ -19,23 +19,18 @@ export function ArticleRegister() {
     setBody('');
   };
 
-  const mutateArticles = async () => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateRequest()) return;
     await postArticle({ title, body });
     mutate();
+    clearInput();
   };
 
   return (
     <div className="border p-4 mt-4">
       <div className="text-2xl">New Article</div>
-      <form
-        className="mt-4"
-        onSubmit={async (e) => {
-          e.preventDefault();
-          if (!validateRequest()) return;
-          await mutateArticles();
-          clearInput();
-        }}
-      >
+      <form className="mt-4" onSubmit={handleSubmit}>
         <div>
           <label>Title</label>
           <input

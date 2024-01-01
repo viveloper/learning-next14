@@ -1,11 +1,10 @@
-import axios from 'axios';
+import axios, { AxiosError, isAxiosError } from 'axios';
 import { useState } from 'react';
 import { ArticleType } from '../api/article/route';
+import { getErrorMessage } from '../error';
 
 export function useArticlePost() {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<ArticleType>();
-  const [error, setError] = useState<unknown>();
 
   return {
     postArticle: async (article: Omit<ArticleType, 'id'>) => {
@@ -15,15 +14,13 @@ export function useArticlePost() {
           '/client-side-data-fetching/api/article',
           article
         );
-        setData(res.data);
         setIsLoading(false);
+        return res.data;
       } catch (error) {
         setIsLoading(false);
-        setError(error);
+        alert(getErrorMessage(error as Error));
       }
     },
     isLoading,
-    data,
-    error,
   };
 }
