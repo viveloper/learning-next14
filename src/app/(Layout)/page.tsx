@@ -1,4 +1,4 @@
-import { RefreshButton } from '../components/RefreshButton';
+import { RefreshButton } from '@/components/RefreshButton';
 
 type Todo = {
   userId: number;
