@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const word = searchParams.get('word');
 
-  await sleep(2000);
+  await sleep(200);
 
   if (!word) return Response.json([]);
   return Response.json(DATA.filter((item) => item.word.includes(word)));

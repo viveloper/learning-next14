@@ -1,51 +1,32 @@
 'use client';
 
-import { SuggestionType } from '@/app/api/suggestion/route';
 import { useState, useTransition } from 'react';
-import useSWR from 'swr';
+import { WordSuggestion } from './WordSuggestion';
+import { HeavyRenderingComponent } from './HeavyRenderingComponent';
 
 export default function Page() {
-  const [word, setWord] = useState('');
+  const [isShow, setIsShow] = useState(false);
   const [isPending, startTransition] = useTransition();
-
-  const { data } = useSWR(
-    `api/suggestion?word=${word}`,
-    async (url) => {
-      const response = await fetch(url);
-      const data: SuggestionType[] = await response.json();
-      return data;
-    },
-    {
-      revalidateOnFocus: false,
-      shouldRetryOnError: false,
-      keepPreviousData: true,
-    }
-  );
-
-  const isShowSuggestion = data && data.length > 0;
-
-  console.log(isPending);
 
   return (
     <div className="p-4">
-      <h3 className="text-xl">Word Suggestion</h3>
-      <input
-        className="border border-gray-400 p-2 outline-none"
-        type="text"
-        value={word}
-        onChange={(e) => {
-          startTransition(() => {
-            setWord(e.target.value);
-          });
-        }}
-      />
-      {isShowSuggestion && (
-        <ul className="border shadow p-2 mt-1">
-          {data.map(({ id, word }) => (
-            <li key={id}>{word}</li>
-          ))}
-        </ul>
-      )}
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <button
+            className="outline rounded py-1 px-2"
+            onClick={() => {
+              startTransition(() => {
+                setIsShow(true);
+              });
+            }}
+          >
+            Mount HeavyRenderingComponent
+          </button>
+          {isPending && <div>Pending...</div>}
+          {isShow && <HeavyRenderingComponent />}
+        </div>
+        <WordSuggestion />
+      </div>
     </div>
   );
 }
